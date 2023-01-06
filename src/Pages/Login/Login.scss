@@ -74,6 +74,10 @@
         font-size: 12px;
         font-weight: 600;
         padding: 0 4px;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: #2ab4b3;
+        }
       }
 
       &-submit {
@@ -83,6 +87,10 @@
         color: white;
         padding: 1rem;
         border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: #2ab4b3;
+        }
       }
     }
 
