@@ -241,6 +241,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@createnextapp/async-local-storage@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@createnextapp/async-local-storage/-/async-local-storage-1.0.1.tgz#9766fc15e88471fd4b0eb83079cd785863ca68d2"
+  integrity sha512-9C6WMjpp2qP9HE/R+rZcMt3ilqeXP6QdMhYzw5gy865xb8ZqYVnJbsLY3hK03qxwSIV8i7Vk4jTzCBdeGkRbuw==
+
 "@esbuild/android-arm@0.15.18":
   version "0.15.18"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.18.tgz#266d40b8fdcf87962df8af05b76219bc786b4f80"

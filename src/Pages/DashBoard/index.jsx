@@ -9,9 +9,8 @@ const DashBoard = () => {
   const { handleLogout } = useContext(AppContext);
   return (
     <div className="DashBoard">
-      <div className="DashBoard-header-container">
-        <DashBoardHeader />
-      </div>
+      <DashBoardHeader />
+
       <div className="DashBoard-main">
         <Outlet />
       </div>

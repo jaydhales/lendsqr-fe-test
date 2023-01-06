@@ -11,13 +11,19 @@ import { AppContext } from "../../Context/AppContext";
 
 const DashBoardHeader = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [userDetails, setUserDetails] = useState(
+    JSON.parse(localStorage.getItem("userDetails")) || null
+  );
   const { localData, getAdminDetails } = useContext(AppContext);
 
-  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-
   useEffect(() => {
-    getAdminDetails(localData?.id);
-  }, []);
+    async function fetchUserDetails() {
+      const result = await getAdminDetails(localData?.id);
+      setUserDetails(result);
+    }
+
+    fetchUserDetails();
+  }, [localData]);
 
   if (userDetails === null) return null;
 

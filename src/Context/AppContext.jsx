@@ -33,7 +33,9 @@ const AppContextProvider = ({ children }) => {
 
   const getAdminDetails = async (id) => {
     const result = await fetchApi(`users/${id}`, "get");
-    localStorage.setItem("userDetails", JSON.stringify(await result));
+    localStorage.setItem("userDetails", JSON.stringify(result));
+
+    return result;
   };
 
   const fetchApi = async (url, method) => {
@@ -52,6 +54,7 @@ const AppContextProvider = ({ children }) => {
         isLoggedIn: false,
       })
     );
+    localStorage.removeItem("userDetails");
 
     window.location.reload();
   };

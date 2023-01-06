@@ -27,14 +27,21 @@ const Login = () => {
     setIsSubmitting(false);
   }, [isSubmitting]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+  };
+
   return (
     <div className="Login">
       <header className="Login-header">
-        <img src={logo} alt="logo" />
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
       </header>
       <div className="Login-content">
         <img src={loginPoster} alt="" />
-        <form className="Login-form" onSubmit={(e) => setIsSubmitting(true)}>
+        <form className="Login-form" onSubmit={(e) => handleSubmit(e)}>
           <div className="form-head">
             <h1>Welcome!</h1>
             <p>Enter details to login</p>
