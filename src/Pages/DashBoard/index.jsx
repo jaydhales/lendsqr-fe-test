@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { AppContext } from "../../../Context/AppContext";
+import { AppContext } from "../../Context/AppContext";
+
 
 const DashBoard = () => {
   const { handleLogout } = useContext(AppContext);
@@ -8,7 +9,7 @@ const DashBoard = () => {
     <div>
       DashBoard
       <Outlet />
-      <button onClick={e =>handleLogout()}>Logout here</button>
+      <button onClick={(e) => handleLogout()}>Logout here</button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
-import { AppContext } from "../Context/AppContext";
+import { AppContext } from "./Context/AppContext";
 import { DashBoard, Users, User, Login, NotFound } from "./Pages";
 
 const AppRoutes = () => {
