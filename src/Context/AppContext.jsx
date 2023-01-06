@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,10 +23,26 @@ const AppContextProvider = ({ children }) => {
       "lendsqr-login",
       JSON.stringify({
         isLoggedIn: true,
+        // random user id between 1 and 100
+        id: Math.floor(Math.random() * 100) + 1,
       })
     );
 
     window.location.reload();
+  };
+
+  const getAdminDetails = async (id) => {
+    const result = await fetchApi(`users/${id}`, "get");
+    localStorage.setItem("userDetails", JSON.stringify(await result));
+  };
+
+  const fetchApi = async (url, method) => {
+    const result = await axios({
+      method,
+      url: `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/${url}`,
+    });
+
+    return result.data;
   };
 
   const handleLogout = (e) => {
@@ -45,6 +62,7 @@ const AppContextProvider = ({ children }) => {
         localData,
         handleLogin,
         handleLogout,
+        getAdminDetails,
       }}
     >
       {children}

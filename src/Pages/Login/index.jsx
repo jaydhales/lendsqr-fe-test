@@ -18,6 +18,7 @@ const Login = () => {
     if (isSubmitting) {
       if (formData.email && formData.password) {
         handleLogin(formData);
+        setFormData({ email: "", password: "" });
       } else {
         alert("Please fill all the fields");
       }
@@ -77,7 +78,7 @@ const Login = () => {
               FORGOT PASSWORD?
             </a>
 
-            <input type="submit" className="form-submit" value="LOG IN" />
+            <input type="submit" className="btn btn-green" value="LOG IN" />
           </div>
         </form>
       </div>

@@ -1,4 +1,6 @@
 .Login {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 3rem;
   min-height: 100vh;
   display: flex;
@@ -49,48 +51,6 @@
       &-body {
         display: grid;
         gap: 1.5rem;
-      }
-
-      &-group {
-        border: 2px solid rgba(84, 95, 125, 0.15);
-        border-radius: 5px;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        transition: all 0.3s ease-in-out;
-
-        &:has(input:focus-within) {
-          border: 2px solid #39cdcc;
-        }
-
-        input {
-          width: 100%;
-        }
-      }
-
-      &-action {
-        color: #39cdcc;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 0 4px;
-        transition: all 0.3s ease-in-out;
-        &:hover {
-          color: #2ab4b3;
-        }
-      }
-
-      &-submit {
-        margin-top: 1.5rem;
-        background: #39cdcc;
-        font-weight: 600;
-        color: white;
-        padding: 1rem;
-        border-radius: 8px;
-        transition: all 0.3s ease-in-out;
-        &:hover {
-          background: #2ab4b3;
-        }
       }
     }
 

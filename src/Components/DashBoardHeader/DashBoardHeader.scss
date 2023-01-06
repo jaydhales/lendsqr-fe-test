@@ -1,0 +1,62 @@
+.DashBoardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 3px 0px 20px 0px #0000000a;
+
+  padding: 30px;
+  .search-bar {
+    display: flex;
+
+    .form-group,
+    .btn {
+      padding: 12px 20px;
+      margin: 0;
+    }
+
+    .form-group {
+      border-radius: 8px 0 0 8px;
+      width: 348px;
+    }
+
+    .btn {
+      border-radius: 0 8px 8px 0;
+      font-size: 18px;
+    }
+  }
+
+  .menu-tab {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .bell-icon {
+    font-size: 30px;
+    color: #213f7d;
+    line-height: 0;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .profile-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .profile-dropdown {
+      svg {
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
