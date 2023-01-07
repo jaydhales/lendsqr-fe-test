@@ -11,8 +11,17 @@
   }
   &-SideBar {
     position: fixed;
-    left: 0;
     background: white;
+    left: 0;
+    top: 0;
+    padding-top: 110px;
+
+    z-index: 1;
+    height: 100vh;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &-Main {
