@@ -38,6 +38,13 @@ const AppContextProvider = ({ children }) => {
     return result;
   };
 
+  const getUsersData = async (id) => {
+    const result = await fetchApi(`users`, "get");
+    localStorage.setItem("usersData", JSON.stringify(result));
+
+    return result;
+  };
+
   const fetchApi = async (url, method) => {
     const result = await axios({
       method,
@@ -66,6 +73,7 @@ const AppContextProvider = ({ children }) => {
         handleLogin,
         handleLogout,
         getAdminDetails,
+        getUsersData,
       }}
     >
       {children}

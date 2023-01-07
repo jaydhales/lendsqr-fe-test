@@ -39,6 +39,7 @@
   &-List {
     .Row {
       display: grid;
+      gap: 1rem;
       padding: 1rem 0;
       grid-template-columns: repeat(6, 1fr);
       align-items: center;

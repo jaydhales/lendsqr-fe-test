@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../Context/AppContext";
 import "./Users.scss";
 import statsIcon1 from "../../assets/stats-icon-1.svg";
 import statsIcon2 from "../../assets/stats-icon-2.svg";
@@ -8,6 +9,46 @@ import { FiMoreVertical } from "react-icons/fi";
 import { FaEye, FaUserCheck, FaUserCircle, FaUserTimes } from "react-icons/fa";
 
 const Users = () => {
+  const { localData, getUsersData } = useContext(AppContext);
+  const [usersData, setUsersData] = useState(
+    JSON.parse(localStorage.getItem("usersData")) || null
+  );
+  const [itemPerPage, setItemPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = usersData?.length;
+  const totalPages = Math.ceil(totalItems / itemPerPage);
+
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItems = usersData?.slice(indexOfFirstItem, indexOfLastItem);
+
+  console.log(currentItems);
+
+  useEffect(() => {
+    async function fetchUsersData() {
+      const result = await getUsersData(localData?.id);
+      setUsersData(result);
+    }
+
+    fetchUsersData();
+  }, [localData]);
+
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    const onlyDate = newDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    });
+
+    const onlyTime = newDate.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    return onlyDate + "   " + onlyTime;
+  };
   return (
     <div className="Users">
       <h2>Users</h2>
@@ -52,17 +93,16 @@ const Users = () => {
           <h3>Status</h3>
         </div>
 
-        
+        {currentItems?.map((user) => (
+          <div className="Users-List-Item Row" key={user?.id}>
+            <p>{user?.orgName}</p>
+            <p>{user?.userName}</p>
+            <p>{user?.email}</p>
+            <p>{user?.phoneNumber}</p>
+            <p>{formatDate(user?.createdAt)}</p>
+            <p className="status">Inactive</p>
 
-        <div className="Users-List-Item Row">
-          <p>Lendsqr</p>
-          <p>Adedeji</p>
-          <p>adedeji@lendsqr.com</p>
-          <p>08078903721</p>
-          <p>May 15, 2020 10:00 AM</p>
-          <p className="status">Inactive</p>
-
-          <div className="Users-List-Item-Actions">
+            {/* <div className="Users-List-Item-Actions">
             <button>
               <FiMoreVertical />
             </button>
@@ -78,8 +118,9 @@ const Users = () => {
                 <FaUserCheck /> Activate User
               </button>
             </div>
+          </div> */}
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
