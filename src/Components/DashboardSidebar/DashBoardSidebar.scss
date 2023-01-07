@@ -1,0 +1,52 @@
+.DashBoardSidebar {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);
+  display: grid;
+  gap: 40px;
+  width: max-content;
+  padding: 1.5rem 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+  }
+
+  a {
+    color: #213f7d;
+    opacity: 0.6;
+    line-height: 0;
+  }
+
+  .org-switch,
+  a.active {
+    opacity: 1;
+  }
+
+  .nav {
+    &-section {
+      display: grid;
+      gap: 8px;
+    }
+
+    &-heading {
+      padding: 0 30px;
+      color: #213f7d;
+    }
+
+    &-links {
+      &.active {
+        background: #ebfaf9;
+        border-left: 3px solid #39cdcc;
+      }
+    }
+
+    &-footer {
+      border-top: 1px solid #21407d2d;
+
+      a {
+        opacity: 1;
+      }
+    }
+  }
+}

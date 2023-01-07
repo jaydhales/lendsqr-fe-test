@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "../../Context/AppContext";
-import { DashBoardHeader } from "../../Components/index.jsx";
+import { DashBoardHeader, DashboardSideBar } from "../../Components";
 
 import "./DashBoard.scss";
 
 const DashBoard = () => {
-  const { handleLogout } = useContext(AppContext);
   return (
     <div className="DashBoard">
-      <DashBoardHeader />
-
-      <div className="DashBoard-main">
-        <Outlet />
+      <div className="DashBoard-Header">
+        <DashBoardHeader />
       </div>
 
-      <button onClick={(e) => handleLogout()}>Logout here</button>
+      <div className="DashBoard-SideBar">
+        <DashboardSideBar />
+      </div>
+
+      <div className="DashBoard-Main">
+        <Outlet />
+      </div>
     </div>
   );
 };

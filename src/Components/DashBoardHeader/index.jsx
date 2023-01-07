@@ -25,10 +25,6 @@ const DashBoardHeader = () => {
     fetchUserDetails();
   }, [localData]);
 
-  if (userDetails === null) return null;
-
-  const { userName, profile } = userDetails;
-
   return (
     <div className="DashBoardHeader">
       <div className="logo">
@@ -61,10 +57,10 @@ const DashBoardHeader = () => {
 
         <div className="profile">
           <div className="profile-img">
-            <img src={profile.avatar} alt="" />
+            <img src={userDetails?.profile?.avatar} alt="" />
           </div>
 
-          <p className="profile-name">{userName}</p>
+          <p className="profile-name">{userDetails?.userName}</p>
 
           <div className="profile-dropdown">
             <IoMdArrowDropdown />

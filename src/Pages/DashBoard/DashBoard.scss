@@ -1,2 +1,22 @@
 .DashBoard {
+  background: #fbfbfb;
+
+  &-Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: white;
+    z-index: 2;
+  }
+  &-SideBar {
+    position: fixed;
+    left: 0;
+    background: white;
+  }
+
+  &-Main {
+    padding: 170px 0 0 310px;
+    min-height: 100vh;
+  }
 }
