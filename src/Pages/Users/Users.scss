@@ -1,0 +1,84 @@
+.Users {
+  display: grid;
+  gap: 40px;
+  p {
+    font-size: 14px;
+  }
+
+  &-Stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .box {
+      max-width: 300px;
+    }
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+
+    .icon {
+      border-radius: 50%;
+      margin-bottom: 14px;
+      width: 40px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+  }
+
+  &-List {
+    .Row {
+      display: grid;
+      padding: 1rem 0;
+      grid-template-columns: repeat(6, 1fr);
+      align-items: center;
+
+      .status {
+        padding: 7px 13px;
+        border-radius: 999px;
+        width: max-content;
+        background: #545f7d0e;
+      }
+    }
+
+    &-Item {
+      position: relative;
+      &-Actions {
+        position: absolute;
+        right: 0;
+
+        svg {
+          font-size: 20px;
+        }
+
+        .box.menu {
+          display: grid;
+          position: absolute;
+          padding: 20px;
+          right: -75%;
+          top: 150%;
+          width: max-content;
+          gap: 20px;
+
+          button {
+            text-align: left;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            color: #545f7d;
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,6 +2,19 @@
   .logo {
     width: 150px;
   }
+
+  .Login {
+    font-family: "Avenir Next", sans-serif;
+  }
+
+  .box {
+    background: #ffffff;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding: 30px;
+  }
+
   .form {
     &-group {
       border: 2px solid rgba(84, 95, 125, 0.15);

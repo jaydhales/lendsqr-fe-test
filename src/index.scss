@@ -43,10 +43,6 @@ body {
   font-family: Work Sans, sans-serif;
 }
 
-.Login {
-  font-family: "Avenir Next", sans-serif;
-}
-
 input {
   outline: none;
   border: none;
@@ -56,6 +52,7 @@ input {
 button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 img {
