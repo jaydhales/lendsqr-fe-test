@@ -25,11 +25,11 @@
   }
 
   &-Main {
-    padding: 170px 60px 0 310px;
+    padding: 170px 60px 60px 310px;
     min-height: 100vh;
 
     @media (max-width: 1200px) {
-      padding: 150px 40px 0 290px;
+      padding: 150px 40px 40px 290px;
     }
   }
 }

@@ -134,6 +134,8 @@ const DashBoardSidebar = () => {
           <FaSignOutAlt />
           Logout
         </a>
+
+        <small>v1.2.0</small>
       </div>
     </div>
   );

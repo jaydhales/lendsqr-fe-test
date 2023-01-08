@@ -1,3 +1,4 @@
+import { TableItem } from "./../../Components";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../Context/AppContext";
 import "./Users.scss";
@@ -5,24 +6,38 @@ import statsIcon1 from "../../assets/stats-icon-1.svg";
 import statsIcon2 from "../../assets/stats-icon-2.svg";
 import statsIcon3 from "../../assets/stats-icon-3.svg";
 import statsIcon4 from "../../assets/stats-icon-4.svg";
-import { FiMoreVertical } from "react-icons/fi";
-import { FaEye, FaUserCheck, FaUserCircle, FaUserTimes } from "react-icons/fa";
 
 const Users = () => {
   const { localData, getUsersData } = useContext(AppContext);
   const [usersData, setUsersData] = useState(
     JSON.parse(localStorage.getItem("usersData")) || null
   );
+  const [showMenuId, setShowMenuId] = useState(null);
   const [itemPerPage, setItemPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const totalItems = usersData?.length;
   const totalPages = Math.ceil(totalItems / itemPerPage);
 
+  const dividePages = (divider) => {
+    let result = [];
+    for (let i = 1; i <= divider; i++) {
+      const item = Math.ceil((i / divider) * totalItems);
+      result.push(item);
+    }
+    return result;
+  };
+
+  const paginate = (num) => {
+    let result = [];
+    for (let i = 1; i <= num; i++) {
+      result.push(i);
+    }
+    return result;
+  };
+
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const currentItems = usersData?.slice(indexOfFirstItem, indexOfLastItem);
-
-  console.log(currentItems);
 
   useEffect(() => {
     async function fetchUsersData() {
@@ -33,22 +48,12 @@ const Users = () => {
     fetchUsersData();
   }, [localData]);
 
-  const formatDate = (date) => {
-    const newDate = new Date(date);
-    const onlyDate = newDate.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-    });
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [itemPerPage]);
 
-    const onlyTime = newDate.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "numeric",
-      hour12: true,
-    });
-
-    return onlyDate + "   " + onlyTime;
-  };
   return (
     <div className="Users">
       <h2>Users</h2>
@@ -94,33 +99,35 @@ const Users = () => {
         </div>
 
         {currentItems?.map((user) => (
-          <div className="Users-List-Item Row" key={user?.id}>
-            <p>{user?.orgName}</p>
-            <p>{user?.userName}</p>
-            <p>{user?.email}</p>
-            <p>{user?.phoneNumber}</p>
-            <p>{formatDate(user?.createdAt)}</p>
-            <p className="status">Inactive</p>
-
-            {/* <div className="Users-List-Item-Actions">
-            <button>
-              <FiMoreVertical />
-            </button>
-
-            <div className="menu box">
-              <button>
-                <FaEye /> View Details
-              </button>
-              <button>
-                <FaUserTimes /> Blacklist User
-              </button>
-              <button>
-                <FaUserCheck /> Activate User
-              </button>
-            </div>
-          </div> */}
-          </div>
+          <TableItem
+            user={user}
+            key={user?.id}
+            showMenuId={showMenuId}
+            setShowMenuId={setShowMenuId}
+          />
         ))}
+      </div>
+
+      <div className="Users-List-Page-Control">
+        <div className="item-per-page">
+          <p>Showing</p>
+          <select onChange={(e) => setItemPerPage(e.target.value)}>
+            {dividePages(10).map((value) => (
+              <option value={value} key={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+
+          <p>out of {totalItems}</p>
+        </div>
+        <div className="pagination">
+          {paginate(totalPages).map((num) => (
+            <button key={num} onClick={(e) => setCurrentPage(num)}>
+              {num}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

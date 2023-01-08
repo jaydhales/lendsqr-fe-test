@@ -43,9 +43,15 @@
 
     &-footer {
       border-top: 1px solid #21407d2d;
+      padding: 8px 0;
 
       a {
         opacity: 1;
+      }
+
+      small {
+        color: #213f7d;
+        padding: 15px 30px 0;
       }
     }
   }
