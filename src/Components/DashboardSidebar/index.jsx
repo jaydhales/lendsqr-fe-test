@@ -20,12 +20,19 @@ import {
   FaSlidersH,
   FaClipboardList,
   FaSignOutAlt,
+  FaComment,
+  FaMoneyCheck,
+  FaServicestack,
 } from "react-icons/fa";
+import { NavLink, useLocation } from "react-router-dom";
 import { AppContext } from "../../Context/AppContext";
 import "./DashBoardSidebar.scss";
 
 const DashBoardSidebar = () => {
   const { handleLogout } = useContext(AppContext);
+  const { pathname } = useLocation();
+
+  console.log(pathname === "/");
   return (
     <div className="DashBoardSidebar">
       <a href="#" className="org-switch">
@@ -41,92 +48,100 @@ const DashBoardSidebar = () => {
 
       <div className="nav-section">
         <p className="nav-heading">Customers</p>
-        <a href="/users" className="nav-links active">
+        <NavLink to="/users"
+          className={`nav-links ${
+            pathname === "/users" || pathname === "/" ? "active" : ""
+          }`}
+        >
           <FaUserFriends />
           Users
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Guarantors" className="nav-links">
           <FaUsers />
           Guarantors
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Loans" className="nav-links">
           <FaDollarSign />
           Loans
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Decision Models" className="nav-links">
           <FaRegHandshake />
           Decision Models
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Savings" className="nav-links">
           <FaPiggyBank />
           Savings
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Loan Requests" className="nav-links">
           <FaHandHoldingUsd />
           Loan Requests
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Whitelist" className="nav-links">
           <FaUserCheck />
           Whitelist
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Karma" className="nav-links">
           <FaUserTimes />
           Karma
-        </a>
+        </NavLink>
       </div>
       <div className="nav-section">
         <p className="nav-heading">Businesses</p>
-        <a href="#" className="nav-links">
+        <NavLink to="/Organization" className="nav-links">
           <FaBriefcase />
           Organization
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Loan Products" className="nav-links">
           <FaHandHoldingUsd />
           Loan Products
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Savings Products" className="nav-links">
           <FaBuilding />
           Savings Products
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Fees and Charges" className="nav-links">
           <FaCoins />
           Fees and Charges
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Transactions" className="nav-links">
+          <FaMoneyCheck />
           Transactions
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Services" className="nav-links">
+          <FaServicestack />
           Services
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Service Account" className="nav-links">
           <FaUserCog />
           Service Account
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Settlements" className="nav-links">
           <FaScroll />
           Settlements
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Reports" className="nav-links">
           <FaChartBar />
           Reports
-        </a>
+        </NavLink>
       </div>
       <div className="nav-section">
         <p className="nav-heading">Settings</p>
-        <a href="#" className="nav-links">
+        <NavLink to="/Preferences" className="nav-links">
           <FaSlidersH />
           Preferences
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Fees and Pricing" className="nav-links">
           <FaClipboardList />
           Fees and Pricing
-        </a>
-        <a href="#" className="nav-links">
-          <FaClipboardList /> Audit Logs
-        </a>
-        <a href="#" className="nav-links">
+        </NavLink>
+        <NavLink to="/Audit Logs" className="nav-links">
+          <FaClipboardList />
+          Audit Logs
+        </NavLink>
+        <NavLink to="/Systems Messages" className="nav-links">
+          <FaComment />
           Systems Messages
-        </a>
+        </NavLink>
       </div>
 
       <div className="nav-section nav-footer">
