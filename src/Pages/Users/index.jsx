@@ -6,6 +6,7 @@ import statsIcon1 from "../../assets/stats-icon-1.svg";
 import statsIcon2 from "../../assets/stats-icon-2.svg";
 import statsIcon3 from "../../assets/stats-icon-3.svg";
 import statsIcon4 from "../../assets/stats-icon-4.svg";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Users = () => {
   const { localData, getUsersData } = useContext(AppContext);
@@ -33,6 +34,14 @@ const Users = () => {
       result.push(i);
     }
     return result;
+  };
+
+  const handlePageChange = (action) => {
+    if (action === "next") {
+      setCurrentPage(currentPage + 1);
+    } else if (action === "prev") {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   const indexOfLastItem = currentPage * itemPerPage;
@@ -89,31 +98,37 @@ const Users = () => {
       </div>
 
       <div className="Users-List box">
-        <div className="Users-List-Header Row">
-          <h3>Organization</h3>
-          <h3>Username</h3>
-          <h3>Email</h3>
-          <h3>Phone number</h3>
-          <h3>Date joined</h3>
-          <h3>Status</h3>
-        </div>
+        <div className="Users-List-Container">
+          <div className="Users-List-Header Row">
+            <h3>Organization</h3>
+            <h3>Username</h3>
+            <h3>Email</h3>
+            <h3>Phone number</h3>
+            <h3>Date joined</h3>
+            <h3>Status</h3>
+          </div>
 
-        {currentItems?.map((user) => (
-          <TableItem
-            user={user}
-            key={user?.id}
-            showMenuId={showMenuId}
-            setShowMenuId={setShowMenuId}
-          />
-        ))}
+          {currentItems?.map((user) => (
+            <TableItem
+              user={user}
+              key={user?.id}
+              showMenuId={showMenuId}
+              setShowMenuId={setShowMenuId}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="Users-List-Page-Control">
         <div className="item-per-page">
           <p>Showing</p>
           <div className="bg-grey">
-            <select onChange={(e) => setItemPerPage(e.target.value)}>
-              {dividePages(10).map((value) => (
+            <select
+              onChange={(e) => setItemPerPage(e.target.value)}
+              value={itemPerPage}
+            >
+              <option value="10">10</option>
+              {dividePages(5).map((value) => (
                 <option value={value} key={value}>
                   {value}
                 </option>
@@ -124,11 +139,29 @@ const Users = () => {
           <p>out of {totalItems}</p>
         </div>
         <div className="pagination">
+          <button
+            className="bg-grey"
+            onClick={(e) => handlePageChange("prev")}
+            disabled={currentPage === 1}
+          >
+            <FaChevronLeft />
+          </button>
           {paginate(totalPages).map((num) => (
-            <button key={num} onClick={(e) => setCurrentPage(num)}>
+            <button
+              key={num}
+              onClick={(e) => setCurrentPage(num)}
+              className={`page-num ${currentPage === num && "active"}`}
+            >
               {num}
             </button>
           ))}
+          <button
+            className="bg-grey"
+            onClick={(e) => handlePageChange("next")}
+            disabled={currentPage === totalPages}
+          >
+            <FaChevronRight />
+          </button>
         </div>
       </div>
     </div>
