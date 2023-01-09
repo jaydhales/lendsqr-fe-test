@@ -37,18 +37,35 @@
   }
 
   &-List {
-    .Row {
-      display: grid;
-      gap: 1rem;
-      padding: 1rem 0;
-      grid-template-columns: repeat(6, 1fr);
-      align-items: center;
+    overflow-x: hidden;
+    position: relative;
 
-      .status {
-        padding: 7px 13px;
-        border-radius: 999px;
-        width: max-content;
-        background: #545f7d0e;
+    &.box {
+      padding-right: 3rem !important;
+    }
+
+    &-Container {
+      overflow-x: auto;
+
+      .Row {
+        display: grid;
+        min-width: 900px;
+        gap: 1rem;
+        padding: 1rem 0;
+        padding-right: 2rem;
+        grid-template-columns: 3fr 2fr 3fr 2fr 2fr 1fr;
+        align-items: center;
+
+        .status {
+          padding: 7px 13px;
+          border-radius: 999px;
+          width: max-content;
+          background: #545f7d0e;
+        }
+
+        p {
+          word-break: break-all;
+        }
       }
     }
 
@@ -57,12 +74,11 @@
     }
 
     &-Item {
-      position: relative;
       border-bottom: 1px solid #213f7d1a;
 
       &-Actions {
         position: absolute;
-        right: 0;
+        right: 2rem;
 
         svg {
           font-size: 20px;
@@ -96,19 +112,51 @@
       }
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
       margin-top: -20px;
 
       & > div {
         display: flex;
         align-items: center;
         gap: 20px;
+
+        @media (max-width: 951px) {
+          width: max-content;
+          margin: auto;
+        }
+      }
+      .bg-grey {
+        background: #213f7d1a;
+        padding: 7px 12px;
+        border-radius: 8px;
+        color: #213f7d;
+        line-height: 0;
+
+        * {
+          font-size: 14px;
+        }
+      }
+      .item-per-page {
       }
 
-      .item-per-page {
+      .pagination {
         .bg-grey {
-          background: #213f7d1a;
-          padding: 7px 12px;
-          border-radius: 8px;
+          padding: 8px;
+
+          &:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+          }
+        }
+
+        .page-num {
+          color: #545f7d;
+          opacity: 0.6;
+
+          &.active {
+            opacity: 1;
+          }
         }
       }
     }
