@@ -43,9 +43,9 @@ const TableItem = ({ user, showMenuId, setShowMenuId }) => {
         </button>
         {showMenuId === user?.id && (
           <div className="menu box">
-            <button>
+            <a href={"/user/" + user?.id}>
               <FaEye /> View Details
-            </button>
+            </a>
             <button>
               <FaUserTimes /> Blacklist User
             </button>

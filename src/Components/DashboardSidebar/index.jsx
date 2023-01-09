@@ -41,7 +41,7 @@ const DashBoardSidebar = () => {
 
       <div className="nav-section">
         <p className="nav-heading">Customers</p>
-        <a href="#" className="nav-links active">
+        <a href="/users" className="nav-links active">
           <FaUserFriends />
           Users
         </a>
@@ -130,7 +130,7 @@ const DashBoardSidebar = () => {
       </div>
 
       <div className="nav-section nav-footer">
-        <a href="#" className="nav-links" onClick={(e) => handleLogout()}>
+        <a href="/" className="nav-links" onClick={(e) => handleLogout()}>
           <FaSignOutAlt />
           Logout
         </a>

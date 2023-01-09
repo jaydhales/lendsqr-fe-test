@@ -111,13 +111,15 @@ const Users = () => {
       <div className="Users-List-Page-Control">
         <div className="item-per-page">
           <p>Showing</p>
-          <select onChange={(e) => setItemPerPage(e.target.value)}>
-            {dividePages(10).map((value) => (
-              <option value={value} key={value}>
-                {value}
-              </option>
-            ))}
-          </select>
+          <div className="bg-grey">
+            <select onChange={(e) => setItemPerPage(e.target.value)}>
+              {dividePages(10).map((value) => (
+                <option value={value} key={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <p>out of {totalItems}</p>
         </div>

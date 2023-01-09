@@ -33,14 +33,24 @@ const AppContextProvider = ({ children }) => {
 
   const getAdminDetails = async (id) => {
     const result = await fetchApi(`users/${id}`, "get");
-    localStorage.setItem("userDetails", JSON.stringify(result));
+    localStorage.setItem("adminDetails", JSON.stringify(result));
 
     return result;
   };
 
-  const getUsersData = async (id) => {
+  const getUsersData = async () => {
     const result = await fetchApi(`users`, "get");
     localStorage.setItem("usersData", JSON.stringify(result));
+
+    return result;
+  };
+
+  const getUserDetails = async (id) => {
+    const result = await fetchApi(`users/${id}`, "get");
+    localStorage.setItem("userDetails", JSON.stringify({
+      ...JSON.parse(localStorage.getItem("userDetails")),
+      [id]: result,
+    }));
 
     return result;
   };
@@ -74,6 +84,7 @@ const AppContextProvider = ({ children }) => {
         handleLogout,
         getAdminDetails,
         getUsersData,
+        getUserDetails,
       }}
     >
       {children}

@@ -11,18 +11,18 @@ import { AppContext } from "../../Context/AppContext";
 
 const DashBoardHeader = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [userDetails, setUserDetails] = useState(
-    JSON.parse(localStorage.getItem("userDetails")) || null
+  const [adminData, setAdminData] = useState(
+    JSON.parse(localStorage.getItem("adminData")) || null
   );
   const { localData, getAdminDetails } = useContext(AppContext);
 
   useEffect(() => {
-    async function fetchUserDetails() {
+    async function fetchAdminData() {
       const result = await getAdminDetails(localData?.id);
-      setUserDetails(result);
+      setAdminData(result);
     }
 
-    fetchUserDetails();
+    fetchAdminData();
   }, [localData]);
 
   return (
@@ -57,10 +57,10 @@ const DashBoardHeader = () => {
 
         <div className="profile">
           <div className="profile-img">
-            <img src={userDetails?.profile?.avatar} alt="" />
+            <img src={adminData?.profile?.avatar} alt="" />
           </div>
 
-          <p className="profile-name">{userDetails?.userName}</p>
+          <p className="profile-name">{adminData?.userName}</p>
 
           <div className="profile-dropdown">
             <IoMdArrowDropdown />

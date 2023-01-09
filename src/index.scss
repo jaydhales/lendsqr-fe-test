@@ -26,24 +26,21 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  color: #213f7d;
-}
-
-p {
+h6,
+p,
+a,
+small {
   color: #545f7d;
-}
-
-a {
-  color: inherit;
   text-decoration: none;
+  display: block;
 }
 
 body {
   font-family: Work Sans, sans-serif;
 }
 
-input {
+input,
+select {
   outline: none;
   border: none;
   background: none;

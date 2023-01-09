@@ -45,22 +45,19 @@
       }
     }
   }
+}
 
-  .btn {
-    margin-top: 1.5rem;
+.btn {
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
 
-    font-weight: 600;
-
-    padding: 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-
-    &-green {
-      background: #39cdcc;
-      color: white;
-      &:hover {
-        background: #2ab4b3;
-      }
+  &-green {
+    background: #39cdcc;
+    color: white;
+    &:hover {
+      background: #2ab4b3;
     }
   }
 }
