@@ -32,7 +32,6 @@ const DashBoardSidebar = () => {
   const { handleLogout } = useContext(AppContext);
   const { pathname } = useLocation();
 
-  console.log(pathname === "/");
   return (
     <div className="DashBoardSidebar">
       <a href="#" className="org-switch">
@@ -48,7 +47,8 @@ const DashBoardSidebar = () => {
 
       <div className="nav-section">
         <p className="nav-heading">Customers</p>
-        <NavLink to="/users"
+        <NavLink
+          to="/users"
           className={`nav-links ${
             pathname === "/users" || pathname === "/" ? "active" : ""
           }`}

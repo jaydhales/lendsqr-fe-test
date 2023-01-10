@@ -46,12 +46,12 @@ const TableItem = ({ user, showMenuId, setShowMenuId }) => {
             <a href={"/user/" + user?.id}>
               <FaEye /> View Details
             </a>
-            <button>
+            <a href="#">
               <FaUserTimes /> Blacklist User
-            </button>
-            <button>
+            </a>
+            <a href="#">
               <FaUserCheck /> Activate User
-            </button>
+            </a>
           </div>
         )}
       </div>

@@ -147,8 +147,8 @@ const User = () => {
             <div className="details">
               <small>Monthly income</small>
               <p>
-                ₦{userDetails?.education.monthlyIncome[0]} {" - "} ₦
-                {userDetails?.education.monthlyIncome[1]}
+                ₦{userDetails?.education.monthlyIncome[1]} {" - "} ₦
+                {userDetails?.education.monthlyIncome[0]}
               </p>
             </div>
             <div className="details">

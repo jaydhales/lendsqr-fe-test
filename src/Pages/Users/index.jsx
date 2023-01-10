@@ -1,4 +1,4 @@
-import { TableItem } from "./../../Components";
+import { TableItem, Filter } from "./../../Components";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../Context/AppContext";
 import "./Users.scss";
@@ -13,18 +13,23 @@ const Users = () => {
   const [usersData, setUsersData] = useState(
     JSON.parse(localStorage.getItem("usersData")) || null
   );
+
+  const [currentData, setCurrentData] = useState(usersData);
   const [showMenuId, setShowMenuId] = useState(null);
+  const [userStats, setUserStats] = useState({});
   const [itemPerPage, setItemPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalItems = usersData?.length;
+  const totalItems = currentData?.length;
   const totalPages = Math.ceil(totalItems / itemPerPage);
 
   const dividePages = (divider) => {
     let result = [];
+    if (divider >= totalItems) return [totalItems];
     for (let i = 1; i <= divider; i++) {
       const item = Math.ceil((i / divider) * totalItems);
       result.push(item);
     }
+
     return result;
   };
 
@@ -44,9 +49,33 @@ const Users = () => {
     }
   };
 
+  const calculateStatsData = () => {
+    let totalUser = usersData.length;
+    let activeUser = 0;
+    let userWithLoans = 0;
+    let userWithSavings = 0;
+
+    usersData.forEach((user) => {
+      user.accountBalance - user.education.loanRepayment > 0
+        ? userWithSavings++
+        : userWithLoans++;
+
+      new Date(user.lastActiveDate) - new Date(user.createdAt) > 0
+        ? activeUser++
+        : null;
+    });
+
+    return {
+      totalUser,
+      activeUser,
+      userWithLoans,
+      userWithSavings,
+    };
+  };
+
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = usersData?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = currentData?.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     async function fetchUsersData() {
@@ -63,6 +92,10 @@ const Users = () => {
     }
   }, [itemPerPage]);
 
+  useEffect(() => {
+    setUserStats(calculateStatsData());
+  }, [usersData]);
+
   return (
     <div className="Users">
       <h2>Users</h2>
@@ -72,32 +105,37 @@ const Users = () => {
             <img src={statsIcon1} alt="Icon" />
           </div>
           <p>Users</p>
-          <h2>2,453</h2>
+          <h2>{userStats.totalUser}</h2>
         </div>
         <div className="box">
           <div className="icon">
             <img src={statsIcon2} alt="Icon" />
           </div>
           <p>Active Users</p>
-          <h2>2,453</h2>
+          <h2>{userStats.activeUser}</h2>
         </div>
         <div className="box">
           <div className="icon">
             <img src={statsIcon3} alt="Icon" />
           </div>
           <p>Users with Loans</p>
-          <h2>12,453</h2>
+          <h2>{userStats.userWithLoans}</h2>
         </div>
         <div className="box">
           <div className="icon">
             <img src={statsIcon4} alt="Icon" />
           </div>
           <p>Users with Savings</p>
-          <h2>102,453</h2>
+          <h2>{userStats.userWithSavings}</h2>
         </div>
       </div>
 
       <div className="Users-List box">
+        <Filter
+          usersData={usersData}
+          currentData={currentData}
+          setCurrentData={setCurrentData}
+        />
         <div className="Users-List-Container">
           <div className="Users-List-Header Row">
             <h3>Organization</h3>
@@ -111,7 +149,7 @@ const Users = () => {
           {currentItems?.map((user) => (
             <TableItem
               user={user}
-              key={user?.id}
+              key={"user-" + user?.id}
               showMenuId={showMenuId}
               setShowMenuId={setShowMenuId}
             />
@@ -127,9 +165,9 @@ const Users = () => {
               onChange={(e) => setItemPerPage(e.target.value)}
               value={itemPerPage}
             >
-              <option value="10">10</option>
+              {totalItems > 5 && <option value="10">10</option>}
               {dividePages(5).map((value) => (
-                <option value={value} key={value}>
+                <option value={value} key={"page-" + value}>
                   {value}
                 </option>
               ))}
@@ -148,7 +186,7 @@ const Users = () => {
           </button>
           {paginate(totalPages).map((num) => (
             <button
-              key={num}
+              key={"paginate-" + num}
               onClick={(e) => setCurrentPage(num)}
               className={`page-num ${currentPage === num && "active"}`}
             >
