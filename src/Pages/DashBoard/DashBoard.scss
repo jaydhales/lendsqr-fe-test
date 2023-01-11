@@ -22,14 +22,18 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    @media (max-width: 800px) {
+      display: none;
+    }
   }
 
   &-Main {
-    padding: 170px 60px 60px 310px;
+    padding: 170px 40px 60px 290px;
     min-height: 100vh;
 
-    @media (max-width: 1200px) {
-      padding: 150px 40px 40px 290px;
+    @media (max-width: 800px) {
+      padding: 170px 40px 40px 40px;
     }
   }
 }

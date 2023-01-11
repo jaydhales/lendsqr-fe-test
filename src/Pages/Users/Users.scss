@@ -1,6 +1,7 @@
 .Users {
   display: grid;
   gap: 40px;
+  position: relative;
   p {
     font-size: 14px;
   }
@@ -20,7 +21,10 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 500px) {
+      .box {
+        max-width: 100%;
+      }
       grid-template-columns: 1fr;
     }
 
@@ -38,22 +42,20 @@
 
   &-List {
     overflow-x: hidden;
-    position: relative;
 
     &.box {
       padding-right: 3rem !important;
     }
 
     &-Container {
-      overflow-x: auto;
+      overflow-x: scroll;
 
       .Row {
         display: grid;
         min-width: 900px;
         gap: 1rem;
         padding: 1rem 0;
-        padding-right: 2rem;
-        grid-template-columns: 3fr 2fr 3fr 2fr 2fr 1fr;
+        grid-template-columns: 2.5fr 2fr 2.5fr 2fr 2fr 1.25fr;
         align-items: center;
 
         .status {
@@ -65,6 +67,21 @@
 
         p {
           word-break: break-all;
+        }
+
+        h3 {
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          word-break: break-all;
+
+          i {
+            line-height: 0;
+
+            cursor: pointer;
+          }
         }
       }
     }

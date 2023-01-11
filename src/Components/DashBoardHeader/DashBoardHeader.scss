@@ -59,4 +59,11 @@
       }
     }
   }
+
+  @media (max-width: 800px) {
+    .search-bar,
+    .bell-icon {
+      display: none;
+    }
+  }
 }

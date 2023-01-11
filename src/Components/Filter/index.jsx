@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import "./Filter.scss";
+
 const Filter = ({ usersData, currentData, setCurrentData }) => {
   const [orgs, setOrgs] = useState([]);
   const [filterValue, setFilterValue] = useState({
@@ -40,6 +42,7 @@ const Filter = ({ usersData, currentData, setCurrentData }) => {
       <label htmlFor="organization" className="Filter-Org">
         <p>Organization</p>
         <select
+          className="form-group"
           name="organization"
           id="organization"
           value={filterValue.orgName}
@@ -58,6 +61,7 @@ const Filter = ({ usersData, currentData, setCurrentData }) => {
       <label htmlFor="username" className="Filter-Username">
         <p>Username</p>
         <input
+          className="form-group"
           type="text"
           name="username"
           value={filterValue.userName}
@@ -69,6 +73,7 @@ const Filter = ({ usersData, currentData, setCurrentData }) => {
       <label htmlFor="email" className="Filter-Email">
         <p>Email</p>
         <input
+          className="form-group"
           type="text"
           name="email"
           value={filterValue.email}
@@ -83,6 +88,7 @@ const Filter = ({ usersData, currentData, setCurrentData }) => {
       <label htmlFor="phone" className="Filter-Phone">
         <p>Phone Number</p>
         <input
+          className="form-group"
           type="number"
           name="phone"
           value={filterValue.phoneNumber}

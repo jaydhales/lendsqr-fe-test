@@ -7,6 +7,7 @@ import statsIcon2 from "../../assets/stats-icon-2.svg";
 import statsIcon3 from "../../assets/stats-icon-3.svg";
 import statsIcon4 from "../../assets/stats-icon-4.svg";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { BiFilter } from "react-icons/bi";
 
 const Users = () => {
   const { localData, getUsersData } = useContext(AppContext);
@@ -16,6 +17,7 @@ const Users = () => {
 
   const [currentData, setCurrentData] = useState(usersData);
   const [showMenuId, setShowMenuId] = useState(null);
+  const [showFilter, setShowFilter] = useState(false);
   const [userStats, setUserStats] = useState({});
   const [itemPerPage, setItemPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,12 +52,12 @@ const Users = () => {
   };
 
   const calculateStatsData = () => {
-    let totalUser = usersData.length;
+    let totalUser = usersData?.length;
     let activeUser = 0;
     let userWithLoans = 0;
     let userWithSavings = 0;
 
-    usersData.forEach((user) => {
+    usersData?.forEach((user) => {
       user.accountBalance - user.education.loanRepayment > 0
         ? userWithSavings++
         : userWithLoans++;
@@ -131,19 +133,51 @@ const Users = () => {
       </div>
 
       <div className="Users-List box">
-        <Filter
-          usersData={usersData}
-          currentData={currentData}
-          setCurrentData={setCurrentData}
-        />
+        {showFilter && (
+          <Filter
+            usersData={usersData}
+            currentData={currentData}
+            setCurrentData={setCurrentData}
+          />
+        )}
         <div className="Users-List-Container">
           <div className="Users-List-Header Row">
-            <h3>Organization</h3>
-            <h3>Username</h3>
-            <h3>Email</h3>
-            <h3>Phone number</h3>
-            <h3>Date joined</h3>
-            <h3>Status</h3>
+            <h3>
+              Organization{" "}
+              <i onClick={(e) => setShowFilter(!showFilter)}>
+                <BiFilter />
+              </i>
+            </h3>
+            <h3>
+              Username{" "}
+              <i onClick={(e) => setShowFilter(!showFilter)}>
+                <BiFilter />
+              </i>
+            </h3>
+            <h3>
+              Email{" "}
+              <i onClick={(e) => setShowFilter(!showFilter)}>
+                <BiFilter />
+              </i>
+            </h3>
+            <h3>
+              Phone number{" "}
+              <i onClick={(e) => setShowFilter(!showFilter)}>
+                <BiFilter />
+              </i>
+            </h3>
+            <h3>
+              Date joined{" "}
+              <i onClick={(e) => setShowFilter(!showFilter)}>
+                <BiFilter />
+              </i>
+            </h3>
+            <h3>
+              Status{" "}
+              <i onClick={(e) => setShowFilter(!showFilter)}>
+                <BiFilter />
+              </i>
+            </h3>
           </div>
 
           {currentItems?.map((user) => (
